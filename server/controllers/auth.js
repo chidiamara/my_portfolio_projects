@@ -28,8 +28,11 @@ export const register = async (req, res) => {
             location,
             occupation,
             viewedProfile: Math.floor(Math.random() * 10000),  // USING RANDOM NUMBERS
-            impressions: Math.floor(Math.random() * 10000),  // USING RANDOM NUMBERS
-        })
+            impressions: Math.floor(Math.random() * 10000) // USING RANDOM NUMBERS
+        });
+        const savedUser = await newUser.save();
+        res.status(201).json(savedUser);
     } catch (err) {
+        res.status(500).json({ error: err.message });
     }
 }
